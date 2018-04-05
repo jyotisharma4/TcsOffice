@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace TCSOffice.Presentation.Web.Controllers
 {
-    public class HomeController : Controller
+    public class AccountController : Controller
     {
-        // GET: Home
-        public ActionResult Index()
+        // GET: Account
+        public ActionResult Login()
         {
             return View();
         }
