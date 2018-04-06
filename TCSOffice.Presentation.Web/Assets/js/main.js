@@ -4,4 +4,5 @@ var App = angular.module('MainApp',
 App.controller('AppController',
     ["$scope", "$rootScope",
         function ($scope, $rootScope) {
+            alert(3);
         }]);

@@ -11,6 +11,8 @@
     <script src="~/Scripts/angular-sanitize.js"></script>
     <script src="~/Assets/js/main.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/TCSOffice/TCSOfficeApp.routes.js"></script>
+    <script src="~/TCSOffice/Pages/Customer/customersCtrl.js"></script>
 
 </head>
 <body ng-app="MainApp" ng-controller="AppController">
@@ -32,6 +34,7 @@
 
     <div class="container body-content">
         <div ng-view>
+            
             @RenderSection("featured", required: false)
             @RenderBody()
         </div>
