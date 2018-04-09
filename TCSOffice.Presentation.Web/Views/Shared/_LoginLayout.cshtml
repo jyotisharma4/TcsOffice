@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Login Page - TCS Office</title>
+    <meta name="description" content="User login page" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--basic styles-->
+    <link href="../Assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../Assets/css/font-awesome.min.css" />
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+    <!--page specific plugin styles-->
+    <!--fonts-->
+    <link rel="stylesheet" href="../Assets/css/ace-fonts.css" />
+    <!--ace styles-->
+    <link rel="stylesheet" href="../Assets/css/ace.min.css" />
+    <link rel="stylesheet" href="../Assets/css/ace-responsive.min.css" />
+    <link rel="stylesheet" href="../Assets/css/ace-skins.min.css" />
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
+    <![endif]-->
+    <!--inline styles related to this page-->
+    <!--ace settings handler-->
+
+</head>
+<body class="login-layout">
+    <div class="main-container container-fluid">
+        <div class="main-content">
+            @RenderSection("featured", required: false)
+            @RenderBody()
+        </div>
+     </div><!--/.main-container-->
+    <!--basic scripts-->
+    <!--[if !IE]>-->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='../Assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <!--<![endif]-->
+    <!--[if IE]>
+    <script type="text/javascript">
+     window.jQuery || document.write("<script src='assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+    </script>
+    <![endif]-->
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='../Assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="../Assets/js/bootstrap.min.js"></script>
+    <!--page specific plugin scripts-->
+    <!--inline scripts related to this page-->
+    <script type="text/javascript">
+			function show_box(id) {
+			 jQuery('.widget-box.visible').removeClass('visible');
+			 jQuery('#'+id).addClass('visible');
+			}
+    </script>
+</body>
+</html>
