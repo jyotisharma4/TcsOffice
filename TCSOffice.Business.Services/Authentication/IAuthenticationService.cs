@@ -12,5 +12,6 @@ namespace TCSOffice.Business.Services.Authentication
     {
         BaseResponse Login(LoginViewModel login);
         BaseResponse RegisterCompany(LoginViewModel login);
+        BaseResponse ActivateCompany(int userId, int companyId);
     }
 }

@@ -62,7 +62,7 @@ namespace TCSOffice.Business.Services.Authentication
                     var body = new StringBuilder();
                     body.AppendFormat("Hello Admin,\n");
                     body.AppendLine("Please click on below link to activate the company.");
-                    body.AppendLine("<a href=" + basePath + "/userId =  " + userEntity.Id + "companyId = " + companyEntity.Id + ">Activate</a>");
+                    body.AppendLine("<a href=" + basePath + "?userId=" + userEntity.Id + "&companyId=" + companyEntity.Id + ">Activate</a>");
 
                     string emailResult = Mail.SendMail(login.Email, body.ToString(), subject, fromEmail, fromPassword);
                     if (emailResult == "OK")
@@ -77,6 +77,20 @@ namespace TCSOffice.Business.Services.Authentication
             {
                 return ResponseFactory.Error(ex.Message);
             }
+        }
+
+        public BaseResponse<LoginViewModel> ActivateCompany(int userId, int companyId)
+        {
+            if(userId > 0 && companyId > 0)
+            {
+
+                var getUser = TCSOfficeDbContext.Logins.FirstOrDefault(z => z.Id == userId);
+                if(getUser != null)
+                {
+                    var getCompany = TCSOfficeDbContext.Companies.FirstOrDefault(z => z.Id == companyId);
+                }
+            }
+            return ResponseFactory.ErrorForType<LoginViewModel>("Company is invalid.");
         }
     }
 }
