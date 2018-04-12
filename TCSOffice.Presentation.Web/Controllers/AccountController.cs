@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,12 +34,37 @@ namespace TCSOffice.Presentation.Web.Controllers
             if (response.Data != null)
             {
                 FormsAuthentication.SetAuthCookie(login.UserName, false);
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Login", "Account");
             }
             else
             {
                 ModelState.AddModelError("", "Invalid UserName or Password.");
             }
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult RegisterCompany(LoginViewModel login)
+        {
+            var response = _authenticationService.RegisterCompany(login);
+            if (response.Success)
+            {
+                TempData["Success"] = response.Message;
+            }
+            else
+            {
+                TempData["Error"] = response.Message;
+            }
+            return RedirectToAction("Login","Account");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ActivateCompanyFromEmail(string userId, string companyId)
+        {
             return View();
         }
     }

@@ -26,16 +26,11 @@ namespace TCSOffice.Business.DataAccess.Migrations
                 new Company
                 {
                     CompanyName = "Harish Company",
-                    Address1 = "H no 64",
-                    Address2 = "Model Town",
-                    City = "Douala",
-                    Country = "Cameroon",
-                    Zip = "201301",
+                    Address = "H no 64 Cameroon",
                     Email = "yadavharish004@hotmail.com",
                     DateCreated = DateTime.UtcNow,
                     IsActive = true,
-                    Phone = "9876543210",
-                    State = "Cameroon"
+                    Phone = "9876543210"
                 });
 
             context.SaveChanges();
@@ -49,8 +44,6 @@ namespace TCSOffice.Business.DataAccess.Migrations
                   IsActive = true,
                   DateCreated = DateTime.UtcNow,
                   Email = "yadavharish004@hotmail.com",
-                  FirstName = "Harish",
-                  LastName = "Yadav",
                   IsAdmin = true,
                   Company = context.Companies.FirstOrDefault(z=>z.CompanyName == "Harish Company")
               });

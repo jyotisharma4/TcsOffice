@@ -19,5 +19,23 @@ namespace TCSOffice.Business.Domain.Dto
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
+
+        [Required(ErrorMessage = "Confirm Password is required")]
+        [Compare("Password", ErrorMessage = "The password and confirm password do not match.")]
+        [DataType(DataType.Password)]
+        public string ConfirmPassword { get; set; }
+
+        [Required]
+        [EmailAddress]
+        [MaxLength(50)]
+        [Display(Name = "Email")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "Company Name is required")]
+        public string CompanyName { get; set; }
+
+        public string Address { get; set; }
+
+        public string Phone { get; set; }
     }
 }

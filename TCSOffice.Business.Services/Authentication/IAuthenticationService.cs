@@ -11,5 +11,6 @@ namespace TCSOffice.Business.Services.Authentication
     public interface IAuthenticationService
     {
         BaseResponse Login(LoginViewModel login);
+        BaseResponse RegisterCompany(LoginViewModel login);
     }
 }

@@ -53,6 +53,10 @@
     <Compile Include="Migrations\201804091611226_Login_Company_Table.Designer.cs">
       <DependentUpon>201804091611226_Login_Company_Table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804101826087_remove unnecessary properties.cs" />
+    <Compile Include="Migrations\201804101826087_remove unnecessary properties.Designer.cs">
+      <DependentUpon>201804101826087_remove unnecessary properties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCSOfficeDbContext.cs" />
@@ -70,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804091611226_Login_Company_Table.resx">
       <DependentUpon>201804091611226_Login_Company_Table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804101826087_remove unnecessary properties.resx">
+      <DependentUpon>201804101826087_remove unnecessary properties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
