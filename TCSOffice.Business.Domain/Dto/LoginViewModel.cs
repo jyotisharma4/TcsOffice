@@ -32,6 +32,7 @@ namespace TCSOffice.Business.Domain.Dto
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Company Name is required")]
+        [Display(Name = "Company Name")]
         public string CompanyName { get; set; }
 
         public string Address { get; set; }

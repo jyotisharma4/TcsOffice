@@ -57,6 +57,10 @@
     <Compile Include="Migrations\201804101826087_remove unnecessary properties.Designer.cs">
       <DependentUpon>201804101826087_remove unnecessary properties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804161725333_email id unique.cs" />
+    <Compile Include="Migrations\201804161725333_email id unique.Designer.cs">
+      <DependentUpon>201804161725333_email id unique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCSOfficeDbContext.cs" />
@@ -77,6 +81,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804101826087_remove unnecessary properties.resx">
       <DependentUpon>201804101826087_remove unnecessary properties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804161725333_email id unique.resx">
+      <DependentUpon>201804161725333_email id unique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -9,7 +9,7 @@ using TCSOffice.Business.Domain.Utilities.Extensions;
 
 namespace TCSOffice.Business.Services.Authentication.Workers
 {
-    public static class LoginCompanyMappings
+    public static class AuthenticationMappings
     {
         public static Company ToEntity(this LoginViewModel dto, Company entity = null)
         {

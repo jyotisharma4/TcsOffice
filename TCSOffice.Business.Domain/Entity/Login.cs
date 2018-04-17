@@ -14,6 +14,8 @@ namespace TCSOffice.Business.Domain.Entity
         [MaxLength(50)]
         public string UserName { get; set; }
         public string Password { get; set; }
+        [Required]
+        [MaxLength(255)]
         public string Email { get; set; }
         public virtual Company Company { get; set; }
         public bool IsAdmin { get; set; }

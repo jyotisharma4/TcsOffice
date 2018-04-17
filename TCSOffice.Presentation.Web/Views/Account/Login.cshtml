@@ -24,9 +24,9 @@
                         <div class="widget-body">
                             @if (TempData["Error"] != null)
                             {
-                            <div class="alert alert-danger">
-                                @TempData["Error"]
-                            </div>
+                                <div class="alert alert-danger">
+                                    @TempData["Error"]
+                                </div>
                             }
                             @if (TempData["Success"] != null)
                             {
@@ -62,7 +62,7 @@
                                             </label>
                                             <div class="space"></div>
                                             <div class="clearfix">
-                                                <button type="submit" class="width-35 pull-right btn btn-small btn-primary">
+                                                <button type="submit" class="width-35 pull-right btn btn-small btn-primary" id="btnLogin">
                                                     <i class="icon-key"></i>
                                                     Login
                                                 </button>
@@ -88,38 +88,43 @@
                             </div>
                         </div><!--/widget-body-->
                     </div><!--/login-box-->
-                    <div id="forgot-box" class="forgot-box widget-box no-border">
-                        <div class="widget-body">
-                            <div class="widget-main">
-                                <h4 class="header red lighter bigger">
-                                    <i class="icon-key"></i>
-                                    Retrieve Password
-                                </h4>
-                                <div class="space-6"></div>
-                                <p>
-                                    Enter your email and to receive instructions
-                                </p>
-                                <label>
-                                    <span class="block input-icon input-icon-right">
-                                        <input type="email" class="span12" placeholder="Email" />
-                                        <i class="icon-envelope"></i>
-                                    </span>
-                                </label>
-                                <div class="clearfix">
-                                    <button onclick="return false;" class="width-35 pull-right btn btn-small btn-danger">
-                                        <i class="icon-lightbulb"></i>
-                                        Send Me!
-                                    </button>
+                    @using (Html.BeginForm("SendPasswordByEmail", "Account", FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        <div id="forgot-box" class="forgot-box widget-box no-border">
+                            <div class="widget-body">
+                                <div class="widget-main">
+                                    <h4 class="header red lighter bigger">
+                                        <i class="icon-key"></i>
+                                        Retrieve Password
+                                    </h4>
+                                    <div class="space-6"></div>
+                                    <p>
+                                        Enter your email and to receive instructions
+                                    </p>
+                                    <label>
+                                        <span class="block input-icon input-icon-right">
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "span12", placeholder = "Email", id = "forgotPwdEmail" })
+                                            @Html.ValidationMessageFor(x => x.Email, "", new { @class = "text-danger", @style = "color:red", id = "forgotPwdEmailValidation" })
+                                            <i class="icon-envelope"></i>
+                                        </span>
+                                    </label>
+                                    <div class="clearfix">
+                                        <button type="submit" class="width-35 pull-right btn btn-small btn-primary" id="btnSendPassword">
+                                            <i class="icon-key"></i>
+                                            Send Me!
+                                        </button>
+                                    </div>
+                                </div><!--/widget-main-->
+                                <div class="toolbar center">
+                                    <a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
+                                        Back to login
+                                        <i class="icon-arrow-right"></i>
+                                    </a>
                                 </div>
-                            </div><!--/widget-main-->
-                            <div class="toolbar center">
-                                <a href="#" onclick="show_box('login-box'); return false;" class="back-to-login-link">
-                                    Back to login
-                                    <i class="icon-arrow-right"></i>
-                                </a>
-                            </div>
-                        </div><!--/widget-body-->
-                    </div><!--/forgot-box-->
+                            </div><!--/widget-body-->
+                        </div><!--/forgot-box-->
+                    }
                     @using (Html.BeginForm("RegisterCompany", "Account", FormMethod.Post, new { role = "form" }))
                     {
                         @Html.AntiForgeryToken()

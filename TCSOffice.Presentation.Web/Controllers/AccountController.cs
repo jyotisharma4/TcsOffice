@@ -60,12 +60,55 @@ namespace TCSOffice.Presentation.Web.Controllers
             return RedirectToAction("Login","Account");
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        public ActionResult ActivateCompanyFromEmail(int userId, int companyId)
+        {
+            var response = _authenticationService.GetCompany(userId, companyId);
+            if(response.Success)
+            {
+                TempData["CompanyId"] = companyId;
+                TempData["UserId"] = userId;
+                return View(response.Data);
+            }
+            TempData["Error"] = response.Message;
+            return View();
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult ActivateCompanyFromEmail(string userId, string companyId)
+        public ActionResult ActivateCompanyFromEmail()
         {
-            return View();
+            string companyId = TempData.Peek("CompanyId").ToString();
+            string userId = TempData.Peek("UserId").ToString();
+            var response = _authenticationService.ActivateCompany(companyId, userId);
+            if (response.Success)
+            {
+                TempData["Success"] = response.Message;
+            }
+            else
+            {
+                TempData["Error"] = response.Message;
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult SendPasswordByEmail(LoginViewModel login)
+        {
+            var response = _authenticationService.SendPassword(login.Email);
+            if (response.Success)
+            {
+                TempData["Success"] = response.Message;
+            }
+            else
+            {
+                TempData["Error"] = response.Message;
+            }
+            return RedirectToAction("Login", "Account");
         }
     }
 }

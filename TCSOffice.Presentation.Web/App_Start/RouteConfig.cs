@@ -13,18 +13,18 @@ namespace TCSOffice.Presentation.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //convention-based routing
+            routes.MapRoute(
+                name: "Activate",
+                url: "Account/ActivateCompanyFromEmail/{userId}/{companyId}",
+                defaults: new { controller = "Account", action = "ActivateCompanyFromEmail", userId = UrlParameter.Optional, companyId = UrlParameter.Optional }
+            );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Account", action = "Login", id = UrlParameter.Optional }
             );
-            routes.MapRoute(
-                name: "CompanyActivate",
-                url: "{controller}/{action}/{userId}/{companyId}",
-                defaults: new { controller = "Account", action = "ActivateCompanyFromEmail", userId = "", companyId = "" }
-            );
-
-
         }
     }
 }

@@ -223,6 +223,7 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Account\ActivateCompanyFromEmail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

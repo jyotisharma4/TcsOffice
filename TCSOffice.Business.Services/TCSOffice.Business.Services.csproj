@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
-    <Compile Include="Authentication\Workers\LoginCompanyMappings.cs" />
+    <Compile Include="Authentication\Workers\AuthenticationMappings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

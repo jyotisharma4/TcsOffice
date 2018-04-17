@@ -26,6 +26,10 @@ namespace TCSOffice.Business.DataAccess
                 .Entity<Login>()
                 .Property(t => t.UserName)
                 .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
+            modelBuilder
+                .Entity<Login>()
+                .Property(t => t.Email)
+                .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute() { IsUnique = true }));
             base.OnModelCreating(modelBuilder);
         }
         public DbSet<Company> Companies { get; set; }
