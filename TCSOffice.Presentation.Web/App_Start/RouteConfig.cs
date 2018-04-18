@@ -12,7 +12,11 @@ namespace TCSOffice.Presentation.Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+            routes.MapRoute(
+               name: "Home",
+               url: "Home",
+               defaults: new { controller = "Home", action = "Index" }
+               );
             //convention-based routing
             routes.MapRoute(
                 name: "Activate",

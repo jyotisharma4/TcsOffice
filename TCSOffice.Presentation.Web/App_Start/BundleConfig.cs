@@ -33,6 +33,9 @@ namespace TCSOffice.Presentation.Web.App_Start
             bundles.Add(new ScriptBundle("~/bundles/adminappjs")
                 //components files
                 .IncludeDirectory("~/TCSOffice", "*.js")
+
+                .IncludeDirectory("~/TCSOffice/Pages/Home", "*.js")
+
                 );
 
             // ===== CUSTOMER PANEL =======================================================================================

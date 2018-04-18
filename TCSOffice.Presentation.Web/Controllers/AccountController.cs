@@ -34,7 +34,7 @@ namespace TCSOffice.Presentation.Web.Controllers
             if (response.Data != null)
             {
                 FormsAuthentication.SetAuthCookie(login.UserName, false);
-                return RedirectToAction("Login", "Account");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
