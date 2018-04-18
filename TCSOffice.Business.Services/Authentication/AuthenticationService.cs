@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,16 +59,20 @@ namespace TCSOffice.Business.Services.Authentication
                     TCSOfficeDbContext.SaveChanges();
 
                     // Send email to admin
-                    string subject = "Activate Company for " + login.UserName;
-                    var body = new StringBuilder();
-                    body.AppendFormat("Hello Admin,\n");
-                    body.AppendLine("Please click on below link to activate the company.");
-                    body.AppendLine("<a href=" + basePath + "Account/ActivateCompanyFromEmail?userId=" + userEntity.Id + "&companyId=" + companyEntity.Id + ">Activate</a>");
-
-                    string emailResult = Mail.SendMail(login.Email, body.ToString(), subject, fromEmail, fromPassword);
-                    if (emailResult == "OK")
+                    var getAdminEntity = TCSOfficeDbContext.Logins.FirstOrDefault(z => z.IsAdmin == true);
+                    if (getAdminEntity != null)
                     {
-                        return ResponseFactory.Success(null, "Congratulations! Your account has successfully created. Please ask your administrator to activate your account or wait for next 24 working hours.");
+                        string subject = "Activate Company for " + login.UserName;
+                        var body = new StringBuilder();
+                        body.AppendFormat("Hello Admin,\n");
+                        body.AppendLine("Please click on below link to activate the company.");
+                        body.AppendLine("<a href=" + basePath + "Account/ActivateCompanyFromEmail?userId=" + userEntity.Id + "&companyId=" + companyEntity.Id + ">Activate</a>");
+
+                        string emailResult = Mail.SendMail(getAdminEntity.Email, body.ToString(), subject, fromEmail, fromPassword);
+                        if (emailResult == "OK")
+                        {
+                            return ResponseFactory.Success(null, "Congratulations! Your account has successfully created. Please ask your administrator to activate your account or wait for next 24 working hours.");
+                        }
                     }
                 }
                 return ResponseFactory.Error("Something went wrong.");
@@ -75,6 +80,33 @@ namespace TCSOffice.Business.Services.Authentication
             }
             catch (Exception ex)
             {
+                //if (ex.GetBaseException().GetType() == typeof(SqlException))
+                //{
+                //    Int32 ErrorCode = ((SqlException)ex.InnerException).Number;
+                //    string errorMessage = string.Empty;
+                //    switch (ErrorCode)
+                //    {
+                //        case 4060: // Invalid Database
+                //            errorMessage = "Invalid Database";
+                //            break;
+                //        case 18456: // Login Failed
+                //            errorMessage = "Login failed";
+                //            break;
+                //        case 547: // ForeignKey Violation
+                //            errorMessage = "ForeignKey Violation";
+                //            break;
+                //        case 2627: // Unique Index/ Primary key Violation/ Constriant Violation
+                //            errorMessage = "Unique key violation in email, company name or username";
+                //            break;
+                //        case 2601: // Unique Index/Constriant Violation
+                //            errorMessage = "Unique key violation in email, company name or username";
+                //            break;
+                //        default:
+                //            errorMessage = "Something went wrong";
+                //            break;
+                //    }
+                //    return ResponseFactory.Error(errorMessage);
+                //}
                 return ResponseFactory.Error(ex.Message);
             }
         }
@@ -82,13 +114,13 @@ namespace TCSOffice.Business.Services.Authentication
         public BaseResponse<LoginViewModel> GetCompany(int userId, int companyId)
         {
             LoginViewModel viewModel = null;
-            if(userId > 0 && companyId > 0)
+            if (userId > 0 && companyId > 0)
             {
                 var getUser = TCSOfficeDbContext.Logins.FirstOrDefault(z => z.Id == userId);
-                if(getUser != null)
+                if (getUser != null)
                 {
                     var getCompany = TCSOfficeDbContext.Companies.FirstOrDefault(z => z.Id == companyId);
-                    if(getCompany != null)
+                    if (getCompany != null)
                     {
                         viewModel = new LoginViewModel();
                         viewModel.CompanyName = getCompany.CompanyName;
@@ -113,6 +145,7 @@ namespace TCSOffice.Business.Services.Authentication
                 if (userEntity != null)
                 {
                     userEntity.IsActive = true;
+                    userEntity.DateLastModified = DateTime.UtcNow;
                     TCSOfficeDbContext.SaveChanges();
                     return ResponseFactory.Success(null, "Activated successfully.");
                 }
@@ -128,7 +161,7 @@ namespace TCSOffice.Business.Services.Authentication
         {
             try
             {
-                if(!string.IsNullOrEmpty(email))
+                if (!string.IsNullOrEmpty(email))
                 {
                     var userEntity = TCSOfficeDbContext.Logins.FirstOrDefault(z => z.Email == email);
                     if (userEntity != null)
