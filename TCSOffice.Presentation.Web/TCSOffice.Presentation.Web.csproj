@@ -216,6 +216,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="TCSOffice\Pages\Customer\customersCtrl.js" />
     <Content Include="TCSOffice\Pages\Customer\customers.html" />
+    <Content Include="TCSOffice\Pages\Customer\Directives\tcHome.html" />
+    <Content Include="TCSOffice\Pages\Customer\Directives\tcHome.js" />
+    <Content Include="TCSOffice\Pages\Home\home.html" />
+    <Content Include="TCSOffice\Pages\Home\home.js" />
     <Content Include="TCSOffice\TCSOfficeApp.routes.js" />
     <Content Include="Web.config" />
   </ItemGroup>
