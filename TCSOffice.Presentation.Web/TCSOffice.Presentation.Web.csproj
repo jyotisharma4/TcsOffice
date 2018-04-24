@@ -124,10 +124,6 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.4\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
@@ -138,10 +134,6 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -185,8 +177,12 @@
     <Content Include="Assets\images\sort_desc.png" />
     <Content Include="Assets\images\sort_desc_disabled.png" />
     <Content Include="Assets\js\ace-extra.min.js" />
+    <Content Include="Assets\js\angular-datatables.js" />
+    <Content Include="Assets\js\angular.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\jquery-2.0.3.min.js" />
+    <Content Include="Assets\js\jquery.dataTables.js" />
+    <Content Include="Assets\js\jquery.js" />
     <Content Include="Assets\js\jquery.mobile.custom.min.js" />
     <Content Include="Assets\js\main.js" />
     <Content Include="Content\bootstrap.css" />
@@ -214,20 +210,26 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+<<<<<<< HEAD
     <Content Include="TCSOffice\Pages\Customer\customersCtrl.js" />
     <Content Include="TCSOffice\Pages\Customer\customers.html" />
     <Content Include="TCSOffice\Pages\Customer\Directives\tcHome.html" />
     <Content Include="TCSOffice\Pages\Customer\Directives\tcHome.js" />
+=======
+    <Content Include="TCSOffice\Pages\Customer\Directives\tcHome.html" />
+    <Content Include="TCSOffice\Pages\Customer\Directives\tcHome.js" />
+    <Content Include="TCSOffice\Pages\Customer\Services\tcHomeService.js" />
+>>>>>>> 25cf1e611fb70cd96f9266b3d280cfab025e76c1
     <Content Include="TCSOffice\Pages\Home\home.html" />
     <Content Include="TCSOffice\Pages\Home\home.js" />
     <Content Include="TCSOffice\TCSOfficeApp.routes.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -248,6 +250,7 @@
     <Content Include="Views\Customer\Index.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\ActivateCompanyFromEmail.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -257,8 +260,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\img\" />
     <Folder Include="Models\" />
     <Folder Include="TCSOffice\Components\" />
+    <Folder Include="TCSOffice\Pages\Customer\Model\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TCSOffice.Business.DataAccess\TCSOffice.Business.DataAccess.csproj">

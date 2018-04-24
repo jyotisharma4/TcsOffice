@@ -54,6 +54,8 @@
     <Compile Include="Authentication\AuthenticationService.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Authentication\Workers\AuthenticationMappings.cs" />
+    <Compile Include="CompanyService.cs" />
+    <Compile Include="ICompanyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
