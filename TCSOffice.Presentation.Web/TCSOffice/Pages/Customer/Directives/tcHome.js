@@ -1,9 +1,9 @@
 ﻿(function () {
     'use strict';
 
-    App.directive('tcHome', ['DTOptionsBuilder', tcHome]);
+    App.directive('tcHome', ['tcHomeService','DTOptionsBuilder', tcHome]);
 
-    function tcHome(DTOptionsBuilder) {
+    function tcHome(tcHomeService,DTOptionsBuilder) {
 
         var directive = {
             replace: true,
@@ -18,12 +18,10 @@
         return directive;
 
         function ctrl($scope) {
-            alert(1);
+            console.log(tcHomeService);
             $scope.dtOptions = DTOptionsBuilder.newOptions()     
                 .withDisplayLength(5)
                 .withOption('bLengthChange', true);
-
-            // $scope.users = {};
 
             $scope.users = [
                 {
@@ -71,6 +69,23 @@
                 }
             ];
 
+           
+            function active()
+            {
+                alert("Active");
+                getData();
+            }
+
+            function getData() {
+                $scope.items = [];
+                var methodName = 'GetAll';
+                tcHomeService.GetAll(function (data) {
+                    alert("Data");
+                    $scope.items = data;
+                });
+            }
+
+            active();
             //$http.get('')
             //    .success(function (data, status) {
             //        // Assign http data into scope variable here
