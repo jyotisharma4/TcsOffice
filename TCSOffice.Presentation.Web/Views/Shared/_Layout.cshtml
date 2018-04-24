@@ -10,6 +10,7 @@
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Assets/css/font-awesome.min.css" />
+    <link href="~/Assets/css/jquery.dataTables.min.css" rel="stylesheet" />
 
     <link href="~/Assets/css/ace-fonts.css" rel="stylesheet" />
     <link href="~/Assets/css/ace.min.css" rel="stylesheet" />
@@ -18,16 +19,28 @@
 
     @*<link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    @*<script src="~/Assets/js/jquery.js"></script>*@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Assets/js/ace-extra.min.js"></script>
 
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-sanitize.js"></script>
-    <script src="~/Assets/js/main.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
+
+    @*<script src="~/TCSOffice/Pages/Customer/Directives/tcHome.js"></script>*@
+    
+    @*<script src="~/Assets/js/jquery.dataTables.js"></script>*@
+    <script src="~/Assets/js/angular-datatables.js"></script>
+    <script src="~/Assets/js/jquery.dataTables.js"></script>
 
     <script src="~/Assets/js/ace.min.js"></script>
     <script src="~/Assets/js/ace-elements.min.js"></script>
+        @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    <script src="~/Assets/js/main.js"></script>
+
 
     @Scripts.Render("~/bundles/adminappjs")
 </head>
@@ -441,7 +454,6 @@
                         <li>
                             <i class="icon-home home-icon"></i>
                             <a href="/">Home</a>
-
                             <span class="divider">
                                 <i class="icon-angle-right arrow-icon"></i>
                             </span>
@@ -450,19 +462,18 @@
                     </ul><!--.breadcrumb-->
                 </div>
                     <div class="page-content">
-                        <div class="container body-content">
+                        @*<div class="container body-content">*@
                             <div ng-view>
                                 @RenderSection("featured", required: false)
+                            
                                 @RenderBody()
                             </div>
-                        </div><!--/.row-fluid-->
+                        @*</div>*@<!--/.row-fluid-->
                     </div><!--/.page-content-->
 
                 </div><!--/.main-content-->
         </div><!--/.main-container-->
     </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
 </html>
