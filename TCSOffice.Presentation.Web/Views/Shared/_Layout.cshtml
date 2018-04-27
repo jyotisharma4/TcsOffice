@@ -10,41 +10,30 @@
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Assets/css/font-awesome.min.css" />
-    <link href="~/Assets/css/jquery.dataTables.min.css" rel="stylesheet" />
+    @*<link href="~/Assets/css/jquery.dataTables.min.css" rel="stylesheet" />*@
 
     <link href="~/Assets/css/ace-fonts.css" rel="stylesheet" />
     <link href="~/Assets/css/ace.min.css" rel="stylesheet" />
     <link href="~/Assets/css/ace-responsive.min.css" rel="stylesheet" />
     <link href="~/Assets/css/ace-skins.min.css" rel="stylesheet" />
 
-    @*<link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />*@
+    <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     @*<script src="~/Assets/js/jquery.js"></script>*@
+    
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Assets/js/ace-extra.min.js"></script>
-
-    <script src="~/Scripts/angular.min.js"></script>
-    <script src="~/Scripts/angular-sanitize.js"></script>
-    <script src="~/Scripts/angular-route.min.js"></script>
-
-    @*<script src="~/TCSOffice/Pages/Customer/Directives/tcHome.js"></script>*@
-    
-    @*<script src="~/Assets/js/jquery.dataTables.js"></script>*@
-    <script src="~/Assets/js/angular-datatables.js"></script>
-    <script src="~/Assets/js/jquery.dataTables.js"></script>
-
-    @*<script src="~/Assets/js/ace.min.js"></script>*@
-    @*<script src="~/Assets/js/ace-elements.min.js"></script>*@
-        @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
     <script src="~/Scripts/bootstrap.min.js"></script>
 
+    <script src="~/Assets/js/jquery.dataTables.min.js"></script>
+    @*<script src="~/Assets/js/jquery.dataTables.js"></script>*@
+    <script src="~/Assets/js/jquery.dataTables.bootstrap.js"></script>
 
-    <script src="~/Assets/js/main.js"></script>
-
-
-    @Scripts.Render("~/bundles/adminappjs")
+    <script src="~/Assets/js/ace.min.js"></script>
+    <script src="~/Assets/js/ace-elements.min.js"></script>
+    
 </head>
-<body ng-app="MainApp" ng-controller="AppController" style="margin-top: -54px;">
+<body style="margin-top: -54px;">
     <div id="wrapper">
         <div class="navbar" id="navbar">
             <script type="text/javascript">
@@ -138,7 +127,7 @@
 
                 <ul class="nav nav-list">
                     <li class="active">
-                        <a href="/">
+                        <a href="Home/Index">
                             <i class="icon-dashboard"></i>
                             <span class="menu-text"> Dashboard </span>
                         </a>
@@ -352,7 +341,7 @@
                                     <i class="icon-double-angle-right"></i>
                                     Inbox
                                 </a>
-                            </li>
+                            </li>m
 
                             <li>
                                 <a href="pricing.html">
@@ -461,19 +450,18 @@
                         <li class="active">Dashboard</li>
                     </ul><!--.breadcrumb-->
                 </div>
-                    <div class="page-content">
-                        @*<div class="container body-content">*@
-                            <div ng-view>
-                                @RenderSection("featured", required: false)
-                            
-                                @RenderBody()
-                            </div>
-                        @*</div>*@<!--/.row-fluid-->
-                    </div><!--/.page-content-->
+                <div class="page-content">
+                    @*<div class="container body-content">*@
+                    @RenderSection("featured", required: false)
+
+                    @RenderBody()
+                    @RenderSection("scripts", required: false)
+                    @*</div>*@<!--/.row-fluid-->
+                    @*</div>*@<!--/.page-content-->
 
                 </div><!--/.main-content-->
-        </div><!--/.main-container-->
-    </div>
-
+            </div><!--/.main-container-->
+        </div>
+       
 </body>
 </html>

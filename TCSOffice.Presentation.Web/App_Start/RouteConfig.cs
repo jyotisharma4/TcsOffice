@@ -17,6 +17,7 @@ namespace TCSOffice.Presentation.Web
                url: "Home",
                defaults: new { controller = "Home", action = "Index" }
                );
+
             //convention-based routing
             routes.MapRoute(
                 name: "Activate",

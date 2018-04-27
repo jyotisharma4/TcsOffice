@@ -16,6 +16,7 @@ namespace TCSOffice.Business.Services
       string constring = ConfigurationManager.ConnectionStrings["TCSOfficeContext"].ConnectionString;
         public BaseResponse<List<CompanyDto>> GetAll()
         {
+            var companyList = new List<CompanyDto>();
             using (SqlConnection con = new SqlConnection(constring))
             {
                 using (SqlCommand cmd = new SqlCommand("uspGetAllCompany", con))
@@ -24,12 +25,27 @@ namespace TCSOffice.Business.Services
                     con.Open();
                     var dt = new DataTable();
                     dt.Load(cmd.ExecuteReader());
+                   companyList =(from DataRow row in dt.Rows
+
+                     select new CompanyDto
+                     {
+                         CompanyName = row["CompanyName"].ToString(),
+                         Address = row["Address"].ToString(),
+                         Email = row["Email"].ToString(),
+                         Id = Convert.ToInt32(row["Id"].ToString()),
+                         IsActive =Convert.ToBoolean(row["IsActive"].ToString()),
+                         Phone = row["Phone"].ToString()
+                     }).ToList();
                     var d = dt;
                     con.Close();
                 }
             }
-
-            return null;
+            return new BaseResponse<List<CompanyDto>>
+            {
+                Message = "Success",
+                Success = true,
+                Data = companyList
+            };
         }
     }
 }
