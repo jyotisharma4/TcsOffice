@@ -66,6 +66,7 @@
     <Compile Include="Core\SystemData.cs" />
     <Compile Include="Core\UnitOfWork.cs" />
     <Compile Include="Dto\CompanyDto.cs" />
+    <Compile Include="Dto\jQueryDataTableParamModel.cs" />
     <Compile Include="Dto\LoginViewModel.cs" />
     <Compile Include="Entity\Company.cs" />
     <Compile Include="Entity\Login.cs" />

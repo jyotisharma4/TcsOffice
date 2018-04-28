@@ -14,9 +14,9 @@ namespace TCSOffice.Business.Services
    public class CompanyService : ICompanyService
     {
       string constring = ConfigurationManager.ConnectionStrings["TCSOfficeContext"].ConnectionString;
-        public BaseResponse<List<CompanyDto>> GetAll()
+        public BaseResponse<List<CompanyDto>> GetAll(jQueryDataTableParamModel filters)
         {
-            var companyList = new List<CompanyDto>();
+            IEnumerable<CompanyDto> companyList = new List<CompanyDto>();
             using (SqlConnection con = new SqlConnection(constring))
             {
                 using (SqlCommand cmd = new SqlCommand("uspGetAllCompany", con))
@@ -35,16 +35,46 @@ namespace TCSOffice.Business.Services
                          Id = Convert.ToInt32(row["Id"].ToString()),
                          IsActive =Convert.ToBoolean(row["IsActive"].ToString()),
                          Phone = row["Phone"].ToString()
-                     }).ToList();
+                     });
                     var d = dt;
                     con.Close();
                 }
             }
+
+            IEnumerable<CompanyDto> filteredCompanies;
+            #region Searching
+            if (!string.IsNullOrEmpty(filters.sSearch))
+            {
+                filteredCompanies = companyList
+                         .Where(c => c.CompanyName.ToLower().Contains(filters.sSearch.ToLower())||
+                             c.Address.ToLower().Contains(filters.sSearch.ToLower()) ||
+                             c.Email.ToLower().Contains(filters.sSearch.ToLower()) ||
+                             c.Phone.Contains(filters.sSearch));
+            }
+            else
+            {
+                filteredCompanies = companyList;
+            }
+            #endregion
+
+            #region Sorting
+
+            Func<CompanyDto, string> orderingFunction = (c => filters.iSortColIndx == 0 ? c.CompanyName :
+                                                        filters.iSortColIndx == 1 ? c.Email : 
+                                                        filters.iSortColIndx == 2 ? c.Address :
+                                                        c.Phone
+                                                        );
+
+            if (filters.iSortColDir == "asc")
+                filteredCompanies = filteredCompanies.OrderBy(orderingFunction);
+            else
+                filteredCompanies = filteredCompanies.OrderByDescending(orderingFunction);
+            #endregion
             return new BaseResponse<List<CompanyDto>>
             {
                 Message = "Success",
                 Success = true,
-                Data = companyList
+                Data = filteredCompanies.Skip(filters.iDisplayStart).Take(filters.iDisplayLength).ToList()
             };
         }
     }
