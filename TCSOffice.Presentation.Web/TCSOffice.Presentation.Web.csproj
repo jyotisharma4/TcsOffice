@@ -194,19 +194,14 @@
     <Content Include="Assets\css\bootstrap-responsive.min.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\font-awesome.min.css" />
-    <Content Include="Assets\css\jquery.dataTables.min.css" />
     <Content Include="Assets\font\fontawesome-webfont.svg" />
-    <Content Include="Assets\images\sort_asc.png" />
-    <Content Include="Assets\images\sort_asc_disabled.png" />
-    <Content Include="Assets\images\sort_both.png" />
-    <Content Include="Assets\images\sort_desc.png" />
-    <Content Include="Assets\images\sort_desc_disabled.png" />
+    <Content Include="Assets\js\ace-elements.min.js" />
     <Content Include="Assets\js\ace-extra.min.js" />
-    <Content Include="Assets\js\angular-datatables.js" />
-    <Content Include="Assets\js\angular.js" />
+    <Content Include="Assets\js\ace.min.js" />
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\jquery-2.0.3.min.js" />
-    <Content Include="Assets\js\jquery.dataTables.js" />
+    <Content Include="Assets\js\jquery.dataTables.bootstrap.js" />
+    <Content Include="Assets\js\jquery.dataTables.min.js" />
     <Content Include="Assets\js\jquery.js" />
     <Content Include="Assets\js\jquery.mobile.custom.min.js" />
     <Content Include="Assets\js\main.js" />
@@ -307,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Assets\images\" />
     <Folder Include="Assets\img\" />
     <Folder Include="Models\" />
     <Folder Include="TCSOffice\Components\" />
