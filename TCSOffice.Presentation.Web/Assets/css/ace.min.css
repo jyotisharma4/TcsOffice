@@ -6222,7 +6222,7 @@ th .lbl, td .lbl {
 
 .dataTables_wrapper .row-fluid:first-child {
     padding: 12px 0 4px;
-    background-color: #eff3f8;
+    /*background-color: #eff3f8;*/
 }
 
     .dataTables_wrapper .row-fluid:first-child + .dataTable {
@@ -6231,10 +6231,10 @@ th .lbl, td .lbl {
     }
 
 .dataTables_wrapper .row-fluid:last-child {
-    border-top: 1px solid #DDD;
+    /*border-top: 1px solid #DDD;*/
     padding: 12px 0 6px;
-    background-color: #eff3f8;
-    border-bottom: 1px solid #DDD;
+    /*background-color: #eff3f8;*/
+    /*border-bottom: 1px solid #DDD;*/
 }
 
 .dataTable {

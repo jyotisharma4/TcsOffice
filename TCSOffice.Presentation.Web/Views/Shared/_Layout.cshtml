@@ -5,8 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />*@
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />*@
     <link href="~/Assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Assets/css/font-awesome.min.css" />
@@ -17,20 +17,9 @@
     <link href="~/Assets/css/ace-responsive.min.css" rel="stylesheet" />
     <link href="~/Assets/css/ace-skins.min.css" rel="stylesheet" />
 
-    <link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    @*<script src="~/Assets/js/jquery.js"></script>*@
-    
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Assets/js/ace-extra.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-
-    <script src="~/Assets/js/jquery.dataTables.min.js"></script>
-    @*<script src="~/Assets/js/jquery.dataTables.js"></script>*@
-    <script src="~/Assets/js/jquery.dataTables.bootstrap.js"></script>
-
-    <script src="~/Assets/js/ace.min.js"></script>
-    <script src="~/Assets/js/ace-elements.min.js"></script>
+    @*<link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />*@
+   
     
 </head>
 <body style="margin-top: -54px;">
@@ -462,6 +451,52 @@
                 </div><!--/.main-content-->
             </div><!--/.main-container-->
         </div>
-       
+        <script type="text/javascript">
+			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+        </script>
+        @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+        @*<script src="~/Assets/js/jquery.js"></script>*@
+
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+        <script src="~/Scripts/bootstrap.min.js"></script>
+
+        <script src="~/Assets/js/jquery.dataTables.min.js"></script>
+        @*<script src="~/Assets/js/jquery.dataTables.js"></script>*@
+        <script src="~/Assets/js/jquery.dataTables.bootstrap.js"></script>
+
+        @*<script src="~/Assets/js/ace.min.js"></script>*@
+        <script src="~/Assets/js/ace-elements.min.js"></script>
+        <script type="text/javascript">
+
+    $(document).ready(function () {
+        alert("ready!");
+        alert(11);
+        var oTable1 = $('#sample-table-2').dataTable({
+            "ajax": {
+                "url": "/home/loaddata",
+                "type": "GET",
+                "datatype": "json"
+            },
+            "aoColumns": [
+                { "bSortable": false },
+                null, null, null, null, null,
+                { "bSortable": false }
+            ]
+        });
+
+        $('table th input:checkbox').on('click', function () {
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function () {
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+
+        });
+    });
+
+        </script>
 </body>
+
 </html>
