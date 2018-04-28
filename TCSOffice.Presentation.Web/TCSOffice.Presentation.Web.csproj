@@ -66,22 +66,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.Common.10.0.40219.1\lib\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.ReportViewer.WebForms.v12.12.0.0.0\lib\Microsoft.ReportViewer.WebForms.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -210,6 +194,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\angular-route.min.js" />
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular.min.js" />
@@ -221,6 +209,7 @@
     <Content Include="Assets\font\fontawesome-webfont.ttf" />
     <Content Include="Assets\font\fontawesome-webfont.woff" />
     <Content Include="Assets\font\FontAwesome.otf" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -240,7 +229,6 @@
     <Content Include="TCSOffice\Pages\Home\home.html" />
     <Content Include="TCSOffice\Pages\Home\home.js" />
     <Content Include="TCSOffice\TCSOfficeApp.routes.js" />
-    <Content Include="Views\Shared\CompanyReport.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -251,22 +239,19 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CustomAction\AsPdfResultBase.cs" />
+    <Compile Include="CustomAction\AsResultBase.cs" />
+    <Compile Include="CustomAction\ControllerContextExtensions.cs" />
+    <Compile Include="CustomAction\Enums.cs" />
+    <Compile Include="CustomAction\Margins.cs" />
+    <Compile Include="CustomAction\OptionFlag.cs" />
+    <Compile Include="CustomAction\ViewAsPdf.cs" />
+    <Compile Include="CustomAction\WkhtmlDriver.cs" />
+    <Compile Include="CustomAction\WkhtmltopdfDriver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TCSOfficeDbDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>TCSOfficeDbDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Shared\CompanyReport.aspx.cs">
-      <DependentUpon>CompanyReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Shared\CompanyReport.aspx.designer.cs">
-      <DependentUpon>CompanyReport.aspx</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -282,17 +267,7 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\ActivateCompanyFromEmail.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="TCSOfficeDbDataSet.xsc">
-      <DependentUpon>TCSOfficeDbDataSet.xsd</DependentUpon>
-    </Content>
-    <None Include="TCSOfficeDbDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>TCSOfficeDbDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <Content Include="TCSOfficeDbDataSet.xss">
-      <DependentUpon>TCSOfficeDbDataSet.xsd</DependentUpon>
-    </Content>
+    <Content Include="Views\Customer\CustomerViewAsPdf.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -321,9 +296,6 @@
       <Project>{451619C8-2EEA-45FC-8888-3428CAE707B6}</Project>
       <Name>TCSOffice.Business.Services</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Reports\CompanyReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
