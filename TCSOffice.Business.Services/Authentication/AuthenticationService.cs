@@ -29,9 +29,11 @@ namespace TCSOffice.Business.Services.Authentication
 
         public BaseResponse Login(LoginViewModel login)
         {
-            var isExists = TCSOfficeDbContext.Logins.Where(z => z.UserName == login.UserName && z.Password == login.Password && z.IsActive == true).ToList();
-            if (isExists.Count > 0)
+            var companyActiveIdsList = TCSOfficeDbContext.Companies.Where(z => z.IsActive == true).Select(x=>x.Id).ToList();
+            var isExists = TCSOfficeDbContext.Logins.FirstOrDefault(z => z.UserName == login.UserName && z.Password == login.Password && companyActiveIdsList.Contains(z.Company.Id));
+            if (isExists != null)
             {
+                
                 return ResponseFactory.Success(isExists);
             }
             return ResponseFactory.Success();
@@ -80,33 +82,6 @@ namespace TCSOffice.Business.Services.Authentication
             }
             catch (Exception ex)
             {
-                //if (ex.GetBaseException().GetType() == typeof(SqlException))
-                //{
-                //    Int32 ErrorCode = ((SqlException)ex.InnerException).Number;
-                //    string errorMessage = string.Empty;
-                //    switch (ErrorCode)
-                //    {
-                //        case 4060: // Invalid Database
-                //            errorMessage = "Invalid Database";
-                //            break;
-                //        case 18456: // Login Failed
-                //            errorMessage = "Login failed";
-                //            break;
-                //        case 547: // ForeignKey Violation
-                //            errorMessage = "ForeignKey Violation";
-                //            break;
-                //        case 2627: // Unique Index/ Primary key Violation/ Constriant Violation
-                //            errorMessage = "Unique key violation in email, company name or username";
-                //            break;
-                //        case 2601: // Unique Index/Constriant Violation
-                //            errorMessage = "Unique key violation in email, company name or username";
-                //            break;
-                //        default:
-                //            errorMessage = "Something went wrong";
-                //            break;
-                //    }
-                //    return ResponseFactory.Error(errorMessage);
-                //}
                 return ResponseFactory.Error(ex.Message);
             }
         }
@@ -140,16 +115,16 @@ namespace TCSOffice.Business.Services.Authentication
         {
             try
             {
-                int parseUserId = Int32.Parse(userId);
-                var userEntity = TCSOfficeDbContext.Logins.FirstOrDefault(z => z.Id == parseUserId);
-                if (userEntity != null)
+                int parseCompanyId = Int32.Parse(companyId);
+                var companyEntity = TCSOfficeDbContext.Companies.FirstOrDefault(z => z.Id == parseCompanyId);
+                if (companyEntity != null)
                 {
-                    userEntity.IsActive = true;
-                    userEntity.DateLastModified = DateTime.UtcNow;
+                    companyEntity.IsActive = true;
+                    companyEntity.DateLastModified = DateTime.UtcNow;
                     TCSOfficeDbContext.SaveChanges();
                     return ResponseFactory.Success(null, "Activated successfully.");
                 }
-                return ResponseFactory.Error("User doesn't exist.");
+                return ResponseFactory.Error("Company doesn't exist.");
             }
             catch (Exception ex)
             {
