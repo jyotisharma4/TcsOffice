@@ -441,10 +441,12 @@
                 </div>
                 <div class="page-content">
                     @*<div class="container body-content">*@
+
                     @RenderSection("featured", required: false)
 
                     @RenderBody()
                     @RenderSection("scripts", required: false)
+
                     @*</div>*@<!--/.row-fluid-->
                     @*</div>*@<!--/.page-content-->
 
@@ -453,8 +455,9 @@
         </div>
     </div>
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+                        window.jQuery || document.write("<script src='/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
     </script>
+
     @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
     @*<script src="~/Assets/js/jquery.js"></script>*@
 
@@ -467,50 +470,67 @@
     <script src="~/Assets/js/jquery.dataTables.bootstrap.js"></script>
 
     @*<script src="~/Assets/js/ace.min.js"></script>*@
+
     <script src="~/Assets/js/ace-elements.min.js"></script>
+
     <script type="text/javascript">
-        $(document).ready(function () {
-            alert("ready!");
-            alert(11);
-            var oTable1 = $('#sample-table-2').dataTable({
-                "bServerSide": true,
-                "sAjaxSource": "/home/loaddata",
-                "bProcessing": false,
-                "aoColumns": [
-                    {
-                        "mData": "CompanyName", "sWidth": "100px",
-                    },
-                    {
-                        "mData": "Email", "sWidth": "100px",
-                    },
-                    {
-                        "mData": "Address", "sWidth": "100px",
-                    },
-                    {
-                        "mData": "Phone", "sWidth": "100px",
-                    }
-                ],
-                "aoColumnDefs": [
-                    { "sClass": "center", "aTargets": [0] },
-                    { "sClass": "center", "aTargets": [1] },
-                    { "sClass": "center", "aTargets": [2] },
-                    { "sClass": "center", "aTargets": [3] }
-                ]
 
-            });
+                        $(document).ready(function () {
+                            alert("ready!");
+                            alert(11);
+                            var oTable1 = $('#sample-table-2').dataTable({
+                                "bServerSide": true,
+                                "sAjaxSource": "/company/loaddata",
+                                "bProcessing": false,
+                                "aoColumns": [
+                                    {
+                                        "mData": "CompanyName", "sWidth": "100px",
+                                    },
+                                    {
+                                        "mData": "Email", "sWidth": "100px",
+                                    },
+                                    {
+                                        "mData": "Address", "sWidth": "100px",
+                                    },
+                                    {
+                                        "mData": "Phone", "sWidth": "100px",
+                                    },
+                                    {
+                                        "mData": "IsActive", "sWidth": "100px",
+                                    },
+                                    {
+                                        "mData":"Action",
+                                        "bSortable": "false",
+                                        "sWidth": "100px",
+                                        "fnRender": function (o) {
+                                            console.log(o);
+                                            var tags = "<a href='Edit/" + o.aData.Id + "'>Edit</a>&nbsp<a href='Delete/" + o.aData.Id + "'>Delete</a>";
+                                            return tags;
+                                        }
+                                    }
+                                ],
+                                "aoColumnDefs": [
+                                    { "sClass": "center", "aTargets": [0] },
+                                    { "sClass": "center", "aTargets": [1] },
+                                    { "sClass": "center", "aTargets": [2] },
+                                    { "sClass": "center", "aTargets": [3] },
+                                    { "sClass": "center", "aTargets": [4] }
+                                ]
 
-            $('table th input:checkbox').on('click', function () {
-                var that = this;
-                $(this).closest('table').find('tr > td:first-child input:checkbox')
-                    .each(function () {
-                        this.checked = that.checked;
-                        $(this).closest('tr').toggleClass('selected');
-                    });
+                            });
 
-            });
-        });
+                            $('table th input:checkbox').on('click', function () {
+                                var that = this;
+                                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                                    .each(function () {
+                                        this.checked = that.checked;
+                                        $(this).closest('tr').toggleClass('selected');
+                                    });
+
+                            });
+                        });
 
     </script>
-</body>
 
+</body>
 </html>

@@ -77,5 +77,12 @@ namespace TCSOffice.Business.Services
                 Data = filteredCompanies.Skip(filters.iDisplayStart).Take(filters.iDisplayLength).ToList()
             };
         }
+
+        public BaseResponse<CompanyDto> Get(int Id)
+        {
+
+            return null;
+
+        }
     }
 }

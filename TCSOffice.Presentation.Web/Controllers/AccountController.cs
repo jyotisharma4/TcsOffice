@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 using TCSOffice.Business.Domain.Dto;
 using TCSOffice.Business.Services.Authentication;
 
@@ -34,7 +35,14 @@ namespace TCSOffice.Presentation.Web.Controllers
             if (response.Data != null)
             {
                 FormsAuthentication.SetAuthCookie(login.UserName, false);
-                return RedirectToAction("Index", "Home");
+                if (response.Message == "Admin")
+                {
+                    return RedirectToAction("Index", "Company");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
             }
             else
             {
