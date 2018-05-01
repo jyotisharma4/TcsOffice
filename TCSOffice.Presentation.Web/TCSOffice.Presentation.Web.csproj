@@ -192,6 +192,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Database Scripts\uspGetAllCompany.sql" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
@@ -237,6 +238,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="CustomAction\AsPdfResultBase.cs" />
@@ -269,6 +271,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Customer\CustomerViewAsPdf.cshtml" />
     <Content Include="Views\Home\CustomerViewAsPdf.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Home\CompanyUpdate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -33,8 +33,12 @@ namespace TCSOffice.Business.Services.Authentication
             var isExists = TCSOfficeDbContext.Logins.FirstOrDefault(z => z.UserName == login.UserName && z.Password == login.Password && companyActiveIdsList.Contains(z.Company.Id));
             if (isExists != null)
             {
-                
-                return ResponseFactory.Success(isExists);
+                var msg = string.Empty;
+                if (isExists.IsAdmin)
+                {
+                    msg = "Admin"; 
+                }
+                return ResponseFactory.Success(isExists,msg);
             }
             return ResponseFactory.Success();
         }

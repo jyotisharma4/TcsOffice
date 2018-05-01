@@ -21,39 +21,7 @@ namespace TCSOffice.Presentation.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated)
-            {
-
-                // var data = _service.GetAll();
-                return View();
-            }
-            return RedirectToAction("Account/Login");
+            return View();
         }
-
-
-        public ActionResult loaddata(jQueryDataTableParamModel param)
-        {
-            try
-            {
-                param.iSortColIndx = Convert.ToInt32(Request["iSortCol_0"]);
-                param.iSortColDir = Request["sSortDir_0"];
-                var data = _service.GetAll(param);
-                //Returning Json Data  
-                return Json(new
-                {
-                    sEcho = param.sEcho,
-                    iTotalRecords = data.Data.Count(),
-                    iTotalDisplayRecords = data.Data.Count(),
-                    aaData = data.Data
-                }, JsonRequestBehavior.AllowGet
-                );
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
-
-        }
-
     }
 }

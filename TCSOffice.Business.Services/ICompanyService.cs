@@ -11,8 +11,8 @@ namespace TCSOffice.Business.Services
     public interface ICompanyService 
     {
         BaseResponse<List<CompanyDto>> GetAll(jQueryDataTableParamModel filters);
-
-       // BaseResponse<List<Partial>> GetNotIncludedApplications(IRequester requester, int productId);
-      //  BaseResponse<DataResult<ApplicationDto>> GetByProduct(IRequester requester, DataRequest dataRequest, int productId);
+        BaseResponse<CompanyDto> Get(int Id);
+        // BaseResponse<List<Partial>> GetNotIncludedApplications(IRequester requester, int productId);
+        //  BaseResponse<DataResult<ApplicationDto>> GetByProduct(IRequester requester, DataRequest dataRequest, int productId);
     }
 }
