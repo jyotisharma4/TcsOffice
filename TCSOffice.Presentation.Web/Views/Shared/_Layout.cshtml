@@ -20,10 +20,8 @@
     <script src="~/Assets/js/ace-extra.min.js"></script>
     @*<link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />*@
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
     </script>
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
-    @*<script src="~/Assets/js/jquery.js"></script>*@
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 
@@ -499,7 +497,6 @@
                         "bSortable": "false",
                         "sWidth": "100px",
                         "fnRender": function (o) {
-                            console.log(o);
                             var tags = "<a href='Edit/" + o.aData.Id + "'>Edit</a>&nbsp<a href='Delete/" + o.aData.Id + "'>Delete</a>";
                             return tags;
                         }

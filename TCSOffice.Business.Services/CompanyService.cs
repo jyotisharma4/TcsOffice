@@ -84,5 +84,50 @@ namespace TCSOffice.Business.Services
             return null;
 
         }
+
+        public BaseResponse<List<CompanyDto>> GetAllCompaniesLstForPreview()
+        {
+            try
+            {
+                IEnumerable<CompanyDto> companiesList = new List<CompanyDto>();
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    using (SqlCommand cmd = new SqlCommand("uspGetAllCompany", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+                        var dt = new DataTable();
+                        dt.Load(cmd.ExecuteReader());
+                        companiesList = (from DataRow row in dt.Rows
+
+                                       select new CompanyDto
+                                       {
+                                           CompanyName = row["CompanyName"].ToString(),
+                                           Address = row["Address"].ToString(),
+                                           Email = row["Email"].ToString(),
+                                           Id = Convert.ToInt32(row["Id"].ToString()),
+                                           IsActive = Convert.ToBoolean(row["IsActive"].ToString()),
+                                           Phone = row["Phone"].ToString()
+                                       });
+                        con.Close();
+                    }
+                }
+                return new BaseResponse<List<CompanyDto>>
+                {
+                    Message = "Success",
+                    Success = true,
+                    Data = companiesList.ToList()
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<List<CompanyDto>>
+                {
+                    Message = ex.Message,
+                    Success = false,
+                    Data = null
+                };
+            }
+        }
     }
 }

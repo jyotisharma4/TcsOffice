@@ -12,6 +12,7 @@ namespace TCSOffice.Business.Services
     {
         BaseResponse<List<CompanyDto>> GetAll(jQueryDataTableParamModel filters);
         BaseResponse<CompanyDto> Get(int Id);
+        BaseResponse<List<CompanyDto>> GetAllCompaniesLstForPreview();
         // BaseResponse<List<Partial>> GetNotIncludedApplications(IRequester requester, int productId);
         //  BaseResponse<DataResult<ApplicationDto>> GetByProduct(IRequester requester, DataRequest dataRequest, int productId);
     }

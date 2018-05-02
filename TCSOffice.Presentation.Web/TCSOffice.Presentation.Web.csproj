@@ -273,6 +273,7 @@
     <Content Include="Views\Home\CustomerViewAsPdf.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Home\CompanyUpdate.cshtml" />
+    <Content Include="Views\Company\CompaniesViewAsPdf.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
