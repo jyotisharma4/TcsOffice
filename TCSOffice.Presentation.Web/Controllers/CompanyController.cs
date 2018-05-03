@@ -62,6 +62,13 @@ namespace TCSOffice.Presentation.Web.Controllers
             return View(Data.Data);
         }
 
+        public ActionResult Detail(int id)
+        {
+            var Data = _service.Get(id);
+            return View(Data.Data);
+        }
+
+
         [HttpPost]
         public ActionResult Edit(Company company)
         {

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TCSOffice.Business.Domain.Core;
 using TCSOffice.Business.Domain.Dto;
+using TCSOffice.Business.Domain.Entity;
 
 namespace TCSOffice.Business.Services
 {
@@ -78,11 +79,54 @@ namespace TCSOffice.Business.Services
             };
         }
 
-        public BaseResponse<CompanyDto> Get(int Id)
+        public BaseResponse<Company> Get(int Id)
         {
+            try
+            {
+                Company company = new Company();
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    using (SqlCommand cmd = new SqlCommand("getByID", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@TableName", "Companies");
+                        cmd.Parameters.AddWithValue("@Id", Id);
+                        con.Open();
+                        SqlDataReader dataReader = cmd.ExecuteReader();
+                        //load into the result object the returned row from the database
+                        if (dataReader.HasRows)
+                        {
+                            while (dataReader.Read())
+                            {
+                                company.CompanyName = dataReader["CompanyName"].ToString();
+                                company.Address = dataReader["Address"].ToString();
+                                company.Email = dataReader["Email"].ToString();
+                                company.Id = Convert.ToInt32(dataReader["Id"]);
+                                company.IsActive = Convert.ToBoolean(dataReader["IsActive"].ToString());
+                                company.Phone = dataReader["Phone"].ToString();
+                            }
+                        }
+                        con.Close();
+                    }
+                }
 
-            return null;
 
+                return new BaseResponse<Company>
+                {
+                    Message = "Success",
+                    Success = true,
+                    Data = company
+                };
+            }
+            catch (Exception ex)
+            {
+                return new BaseResponse<Company>
+                {
+                    Message = ex.Message,
+                    Success = false,
+                    Data = null
+                };
+            }
         }
 
         public BaseResponse<List<CompanyDto>> GetAllCompaniesLstForPreview()
@@ -129,5 +173,44 @@ namespace TCSOffice.Business.Services
                 };
             }
         }
+
+        public BaseResponse Save(Company dto)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(constring))
+                {
+                    using (SqlCommand cmd = new SqlCommand("UpdateCompany", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+                        cmd.Parameters.AddWithValue("@Name", dto.CompanyName);
+                        cmd.Parameters.AddWithValue("@Phone", dto.Phone);
+                        cmd.Parameters.AddWithValue("@Email", dto.Email);
+                        cmd.Parameters.AddWithValue("@IsActive", dto.IsActive);
+                        cmd.Parameters.AddWithValue("@Id", dto.Id);
+                        cmd.Parameters.AddWithValue("@Address", dto.Address);
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }
+                return new BaseResponse
+                {
+                    Message = "Success",
+                    Success = true,
+                    Data = null
+                };
+            }
+            catch(Exception ex) {
+
+                return new BaseResponse
+                {
+                    Message = ex.Message,
+                    Success = false,
+                    Data = null
+                };
+            }
+        }
+
     }
 }

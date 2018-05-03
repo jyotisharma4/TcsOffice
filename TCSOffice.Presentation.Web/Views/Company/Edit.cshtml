@@ -67,7 +67,11 @@
                                 Update
                         </button>
                         &nbsp;&nbsp;&nbsp;
-                            @Html.ActionLink("Back to List", "Index")
+                        <button class="btn btn-danger btn-small" type="button" onclick="location.href='@Url.Action("Index", "Company")'">
+                            <i class="icon-reply icon-only"></i>
+                            Back to List
+                        </button>
+
                     </div>
                 </div>
             </div>
