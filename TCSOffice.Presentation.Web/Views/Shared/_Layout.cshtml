@@ -20,7 +20,7 @@
     <script src="~/Assets/js/ace-extra.min.js"></script>
     @*<link href="~/Assets/css/bootstrap-responsive.min.css" rel="stylesheet" />*@
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='../assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+        window.jQuery || document.write("<script src='/../Assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
     </script>
 
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -129,7 +129,7 @@
 
                 <ul class="nav nav-list">
                     <li class="active">
-                        <a href="Home/Index">
+                        <a href="/Company/Index">
                             <i class="icon-dashboard"></i>
                             <span class="menu-text"> Dashboard </span>
                         </a>
@@ -497,7 +497,7 @@
                         "bSortable": "false",
                         "sWidth": "100px",
                         "fnRender": function (o) {
-                            var tags = "<a href='Edit/" + o.aData.Id + "'>Edit</a>&nbsp<a href='Delete/" + o.aData.Id + "'>Delete</a>";
+                            var tags = "<a href='Edit/" + o.aData.Id + "'>Edit</a>&nbsp&nbsp&nbsp<a href='Detail/" + o.aData.Id + "'>Detail</a>";
                             return tags;
                         }
                     }

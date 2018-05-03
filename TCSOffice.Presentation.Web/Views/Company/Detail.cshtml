@@ -1,0 +1,28 @@
+﻿@model TCSOffice.Business.Domain.Entity.Company
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<div>
+    <div class="row-fluid">
+        <div class="form-horizontal">
+            <div class="control-group" style="margin-left: 100px;">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "lbl" }) 
+                    @Html.DisplayFor(model => model.CompanyName)
+                </div>
+                <div class="col-md-10 controls">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
