@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TCSOffice.Business.Domain.Dto;
+using TCSOffice.Business.Domain.Entity;
 using TCSOffice.Business.Services;
 using TCSOffice.Presentation.Web.CustomAction;
 using SpreadsheetLight;
@@ -26,7 +27,7 @@ namespace TCSOffice.Presentation.Web.Controllers
 
         // GET: Company
         public ActionResult Index()
-        {
+          {
             return View();
         }
 
@@ -57,6 +58,18 @@ namespace TCSOffice.Presentation.Web.Controllers
 
         public ActionResult Edit(int id)
         {
+           var Data = _service.Get(id);
+            return View(Data.Data);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Company company)
+        {
+            if (ModelState.IsValid)
+            {
+                var Data = _service.Save(company);
+                return RedirectToAction("Index");
+            }
             return View();
         }
 
