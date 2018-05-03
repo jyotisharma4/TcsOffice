@@ -6,6 +6,11 @@ using System.Web.Mvc;
 using TCSOffice.Business.Domain.Dto;
 using TCSOffice.Business.Services;
 using TCSOffice.Presentation.Web.CustomAction;
+using SpreadsheetLight;
+using System.Web.UI.WebControls;
+using System.IO;
+using System.Web.UI;
+using TCSOffice.Presentation.Web.CustomAction.Excel;
 
 namespace TCSOffice.Presentation.Web.Controllers
 {
@@ -18,7 +23,7 @@ namespace TCSOffice.Presentation.Web.Controllers
         {
             _service = service;
         }
-        
+
         // GET: Company
         public ActionResult Index()
         {
@@ -55,7 +60,6 @@ namespace TCSOffice.Presentation.Web.Controllers
             return View();
         }
 
-        //[HttpPost]
         public ActionResult PreviewCompanies()
         {
             try
@@ -70,7 +74,7 @@ namespace TCSOffice.Presentation.Web.Controllers
                     TempData["Error"] = response.Message;
                     return View("Index");
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -78,5 +82,33 @@ namespace TCSOffice.Presentation.Web.Controllers
             }
         }
 
+        public ActionResult ExportCompaniesToExcel()
+        {
+            try
+            {
+                var response = _service.GetAllCompaniesLstForPreview();
+                if (response.Success)
+                {
+                    List<string> columns = new List<string>();
+                    foreach (var prop in typeof(CompanyDto).GetProperties())
+                    {
+                        columns.Add(prop.Name.ToString());
+                    }
+                    byte[] filecontent = ExcelExportHelpers.ExportExcel(response.Data, "Company", true, columns.ToArray());
+                    return File(filecontent, ExcelExportHelpers.ExcelContentType, "CompaniesList_"+Guid.NewGuid()+".xlsx");
+                    //return View("Index");
+                }
+                else
+                {
+                    TempData["Error"] = response.Message;
+                    return View("Index");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

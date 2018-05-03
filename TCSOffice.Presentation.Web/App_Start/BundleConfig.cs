@@ -29,18 +29,6 @@ namespace TCSOffice.Presentation.Web.App_Start
 
             bundles.Add(new StyleBundle("~/Assets/css").Include("~/Content/site.css"));
 
-            // ===== ADMIN PANEL =======================================================================================
-            bundles.Add(new ScriptBundle("~/bundles/adminappjs")
-                //components files
-                .IncludeDirectory("~/TCSOffice", "*.js")
-
-                .IncludeDirectory("~/TCSOffice/Pages/Customer/Directives", "*.js")
-                .IncludeDirectory("~/TCSOffice/Pages/Customer/Services", "*.js")
-
-                .IncludeDirectory("~/TCSOffice/Pages/Home", "*.js")
-
-                );
-
             // ===== CUSTOMER PANEL =======================================================================================
             BundleTable.EnableOptimizations = false;
         }

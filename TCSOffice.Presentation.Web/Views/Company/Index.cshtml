@@ -9,7 +9,8 @@
         @TempData["Error"]
     </div>
 }
-@Html.ActionLink("Preview and Print", "PreviewCompanies", "Company",null, new { @id = "btnPreviewPrint", @class= "btn btn-primary" })
+@Html.ActionLink("Preview and Print", "PreviewCompanies", "Company",null, new { @id = "btnPreviewPrint", @class= "btn btn-primary", @target = "_blank" })
+@Html.ActionLink("Export to excel", "ExportCompaniesToExcel", "Company", null, new { @id = "btnExportToExcel", @class = "btn btn-primary" })
 
 <table id="sample-table-2" class="table table-striped table-bordered table-hover">
     <thead>
@@ -19,7 +20,7 @@
             <th class="center">Address</th>
             <th class="center">Phone</th>
             <th class="center">IsActive</th>
-            <th class="center">Action</th>
+            <th class="center">Actions</th>
         </tr>
     </thead>
     <tbody></tbody>
