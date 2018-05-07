@@ -21,6 +21,7 @@ namespace TCSOffice.Presentation.Web.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            var companyId = Session["SelectedCompanyId"];
             return View();
         }
     }

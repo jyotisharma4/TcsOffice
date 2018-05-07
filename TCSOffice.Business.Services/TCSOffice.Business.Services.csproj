@@ -55,6 +55,8 @@
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Authentication\Workers\AuthenticationMappings.cs" />
     <Compile Include="CompanyService.cs" />
+    <Compile Include="Customer\CustomerService.cs" />
+    <Compile Include="Customer\ICustomerService.cs" />
     <Compile Include="ICompanyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -71,6 +73,9 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Company\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

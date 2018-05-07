@@ -34,5 +34,8 @@ namespace TCSOffice.Business.DataAccess
         }
         public DbSet<Company> Companies { get; set; }
         public DbSet<Login> Logins { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+
+        public System.Data.Entity.DbSet<TCSOffice.Business.Domain.Dto.CustomerDto> CustomerDtoes { get; set; }
     }
 }

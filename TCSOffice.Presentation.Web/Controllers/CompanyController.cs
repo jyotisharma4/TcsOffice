@@ -27,7 +27,7 @@ namespace TCSOffice.Presentation.Web.Controllers
 
         // GET: Company
         public ActionResult Index()
-          {
+        {
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace TCSOffice.Presentation.Web.Controllers
 
         public ActionResult Edit(int id)
         {
-           var Data = _service.Get(id);
+            var Data = _service.Get(id);
             return View(Data.Data);
         }
 
@@ -115,7 +115,7 @@ namespace TCSOffice.Presentation.Web.Controllers
                         columns.Add(prop.Name.ToString());
                     }
                     byte[] filecontent = ExcelExportHelpers.ExportExcel(response.Data, "Company", true, columns.ToArray());
-                    return File(filecontent, ExcelExportHelpers.ExcelContentType, "CompaniesList_"+Guid.NewGuid()+".xlsx");
+                    return File(filecontent, ExcelExportHelpers.ExcelContentType, "CompaniesList_" + Guid.NewGuid() + ".xlsx");
                     //return View("Index");
                 }
                 else
@@ -129,6 +129,19 @@ namespace TCSOffice.Presentation.Web.Controllers
             {
                 throw;
             }
+        }
+
+        public ActionResult SaveCompanyId(int id)
+        {
+            try
+            {
+                System.Web.HttpContext.Current.Session["SelectedCompanyId"] = id;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return RedirectToAction("Index", "Home");
         }
     }
 }

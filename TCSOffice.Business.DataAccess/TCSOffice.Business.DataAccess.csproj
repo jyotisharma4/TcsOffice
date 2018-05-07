@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201804161725333_email id unique.Designer.cs">
       <DependentUpon>201804161725333_email id unique.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805031943129_add customer table.cs" />
+    <Compile Include="Migrations\201805031943129_add customer table.Designer.cs">
+      <DependentUpon>201805031943129_add customer table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCSOfficeDbContext.cs" />
@@ -84,6 +88,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804161725333_email id unique.resx">
       <DependentUpon>201804161725333_email id unique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031943129_add customer table.resx">
+      <DependentUpon>201805031943129_add customer table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
