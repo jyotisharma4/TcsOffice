@@ -15,5 +15,6 @@ namespace TCSOffice.Business.Domain.Entity
         public int Pre { get; set; }
         public int Amount { get; set; }
         public virtual DailySalesReports DailySalesReport { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }
