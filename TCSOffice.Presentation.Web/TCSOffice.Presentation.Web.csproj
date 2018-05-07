@@ -249,6 +249,7 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\DailySalesReportController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="CustomAction\AsPdfResultBase.cs" />
     <Compile Include="CustomAction\AsResultBase.cs" />
@@ -284,6 +285,7 @@
     <Content Include="Views\Company\CompaniesViewAsPdf.cshtml" />
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\Detail.cshtml" />
+    <Content Include="Views\DailySalesReport\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

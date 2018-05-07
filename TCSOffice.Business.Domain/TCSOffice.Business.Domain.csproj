@@ -68,8 +68,15 @@
     <Compile Include="Dto\CompanyDto.cs" />
     <Compile Include="Dto\jQueryDataTableParamModel.cs" />
     <Compile Include="Dto\LoginViewModel.cs" />
+    <Compile Include="Entity\CashInvoiceSale.cs" />
+    <Compile Include="Entity\ChequesInfo.cs" />
     <Compile Include="Entity\Company.cs" />
+    <Compile Include="Entity\CreditSales.cs" />
+    <Compile Include="Entity\DailySalesReports.cs" />
+    <Compile Include="Entity\Expenses.cs" />
     <Compile Include="Entity\Login.cs" />
+    <Compile Include="Entity\ReceiptOfTheDay.cs" />
+    <Compile Include="Entity\ZedInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\Data\Operators.cs" />
     <Compile Include="Utilities\Data\Predicate.cs" />
