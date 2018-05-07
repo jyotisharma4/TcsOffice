@@ -41,10 +41,6 @@ namespace TCSOffice.Business.DataAccess
         public DbSet<CreditSales> CreditSales { get; set; }
         public DbSet<ReceiptOfTheDay> ReceiptOfTheDay { get; set; }
         public DbSet<Expenses> Expenses { get; set; }
-
-
         public DbSet<Customer> Customers { get; set; }
-
-        public System.Data.Entity.DbSet<TCSOffice.Business.Domain.Dto.CustomerDto> CustomerDtoes { get; set; }
     }
 }
